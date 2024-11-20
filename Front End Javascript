@@ -1,0 +1,44 @@
+const hotButton = document.getElementById('hot-button');
+const coldButton = document.getElementById('cold-button');
+const photoContainer = document.getElementById('photo-container');
+const avgRatingContainer = document.getElementById('average-rating');
+const avgRatingText = document.getElementById('avg-rating');
+
+let totalRatings = 0;
+let hotVotes = 0;
+let coldVotes = 0;
+let photoId = 1;  // Example ID for the current photo
+
+// Function to calculate the average rating
+function calculateAverageRating() {
+  if (totalRatings >= 1000) {
+    const average = (hotVotes - coldVotes) / totalRatings * 5;  // Adjust scale as needed
+    avgRatingText.textContent = average.toFixed(2);
+    avgRatingContainer.style.display = 'block';
+  }
+}
+
+// Event listeners for rating buttons
+hotButton.addEventListener('click', () => {
+  hotVotes++;
+  totalRatings++;
+  calculateAverageRating();
+  loadNextPhoto();
+});
+
+coldButton.addEventListener('click', () => {
+  coldVotes++;
+  totalRatings++;
+  calculateAverageRating();
+  loadNextPhoto();
+});
+
+// Function to load next photo (you can change this to fetch from backend)
+function loadNextPhoto() {
+  // Example: Fetch a new photo from the server based on photoId
+  photoId++;
+  const newPhotoUrl = `https://via.placeholder.com/300?text=Photo+${photoId}`;
+  document.getElementById('photo').src = newPhotoUrl;
+  avgRatingContainer.style.display = 'none';
+}
+
