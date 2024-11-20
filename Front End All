@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Rating Site</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Rate This Photo</h1>
+        <img src="your-photo.jpg" alt="Photo" class="photo">
+        <button id="hot-btn">🔥 Hot</button>
+        <button id="cold-btn">❄️ Not</button>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    text-align: center;
+    margin: 0;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+img.photo {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+document.getElementById("hot-btn").addEventListener("click", function() {
+    alert("You clicked Hot!");
+});
+
+document.getElementById("cold-btn").addEventListener("click", function() {
+    alert("You clicked Not!");
+});
