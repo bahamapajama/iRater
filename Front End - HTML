@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rate This Photo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Rate This Photo</h1>
+    <div id="photo-container">
+      <img id="photo" src="https://via.placeholder.com/300" alt="Photo to rate" />
+      <div id="rating-buttons">
+        <button id="hot-button">🔥</button>
+        <button id="cold-button">❄️</button>
+      </div>
+    </div>
+    <div id="average-rating" style="display:none;">
+      <p>Average Rating: <span id="avg-rating"></span></p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
