@@ -1,0 +1,40 @@
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+let photos = [
+  { id: 1, url: 'https://via.placeholder.com/300', hotVotes: 0, coldVotes: 0, totalRatings: 0 },
+  // Add more photos as needed
+];
+
+app.use(express.static('public'));  // Serve static files like HTML, CSS, JS
+
+// Endpoint to get a photo's rating data
+app.get('/api/photo/:id', (req, res) => {
+  const photo = photos.find(p => p.id === parseInt(req.params.id));
+  if (photo) {
+    res.json(photo);
+  } else {
+    res.status(404).send('Photo not found');
+  }
+});
+
+// Endpoint to post a rating (hot or cold)
+app.post('/api/rate/:id', express.json(), (req, res) => {
+  const { rating } = req.body;  // Rating is either 'hot' or 'cold'
+  const photo = photos.find(p => p.id === parseInt(req.params.id));
+  
+  if (photo) {
+    if (rating === 'hot') {
+      photo.hotVotes++;
+    } else if (rating === 'cold') {
+      photo.coldVotes++;
+    }
+    photo.totalRatings++;
+    res.status(200).send('Rating submitted');
+  } else {
+    res.status(404).send('Photo not found');
+  }
+});
+
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
